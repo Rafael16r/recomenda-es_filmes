@@ -1,0 +1,198 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #1a001a, #300030);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  z-index: 1;
+}
+
+/* 🎬 Vídeo de fundo */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.35);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #ff9800;
+  text-shadow: 0 0 10px #ff9800;
+}
+
+.loading {
+  font-size: 1.2rem;
+}
+
+/* Animação de queda */
+@keyframes dropIn {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Movie grid fluida ocupando toda a tela */
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  z-index: 2;
+  position: relative;
+}
+
+.movie-grid .movie-card {
+  flex: 1 1 220px;
+  max-width: 300px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+  cursor: pointer;
+  animation: dropIn 0.5s ease forwards;
+  opacity: 0; /* Inicia invisível para animação */
+}
+
+/* Resumo do filme */
+.movie-overview {
+  margin: 2rem auto;
+  max-width: 800px;
+  background: rgba(0,0,0,0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 152, 0, 0.5);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffe0b2;
+}
+
+/* Botão de recomendação aleatória */
+.random-button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  border: 2px solid #ff9800;
+  background: rgba(30, 0, 30, 0.8);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.random-button:hover {
+  background: rgba(50, 0, 50, 0.9);
+  border-color: #ff5722;
+  box-shadow: 0 0 10px #ff9800;
+}
+
+/* Controles (dropdown + filtros) */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.controls select {
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 2px solid #ff9800;
+  background: rgba(30, 0, 30, 0.8);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.controls select:hover {
+  border-color: #ff5722;
+  background: rgba(50, 0, 50, 0.9);
+}
+
+.controls input {
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 2px solid #ff9800;
+  background: rgba(30, 0, 30, 0.8);
+  color: #fff;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.controls input::placeholder {
+  color: #ffcc80;
+}
+
+.controls input:focus {
+  border-color: #ff5722;
+  background: rgba(50, 0, 50, 0.9);
+  box-shadow: 0 0 10px #ff9800;
+}
+
+/* Garante que todos os elementos do conteúdo aparecem acima do vídeo */
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .movie-grid .movie-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* Seletor de idioma */
+.language-selector {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.language-selector img {
+  width: 35px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: transform 0.2s, opacity 0.3s;
+  border-radius: 4px;
+}
+
+.language-selector img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.language-selector img.active {
+  opacity: 1;
+  box-shadow: 0 0 10px #ff9800;
+}
